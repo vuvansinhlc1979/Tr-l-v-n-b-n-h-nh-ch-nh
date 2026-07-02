@@ -20417,7 +20417,7 @@ textarea.ta:focus{outline:none;border-color:var(--blue-mid);background:#fff}
   <img src="logo.png" style="width:92px;height:92px;object-fit:cover;border-radius:50%">
 </div>
     <div class="hdr-text">
-      <h1>TRỢ LÝ VĂN BẢN HÀNH CHÍNH – TRƯỜNG TIỂU HỌC</h1>
+      <h1>TRỢ LÝ VĂN BẢN HÀNH CHÍNH – TRƯỜNG HỌC</h1>
       <p>Đơn giản hóa công tác hành chính • Chuẩn hóa văn bản • Nâng cao hiệu quả quản lý</p>
     </div>
     <div class="hdr-right">
@@ -20478,18 +20478,20 @@ textarea.ta:focus{outline:none;border-color:var(--blue-mid);background:#fff}
 
   <!-- THÔNG TIN ĐƠN VỊ -->
   <div class="card">
-    <div class="ch">🏫 Thông tin đơn vị</div>
-    <div class="cb">
-      <div class="grid2">
-        <div class="fg full"><label class="lbl">Cơ quan cấp trên</label><input class="inp" id="coQuanTren" value="UBND XÃ GIA PHÚ"></div>
-        <div class="fg full"><label class="lbl">Tên trường / đơn vị</label><input class="inp" id="tenTruong" value="TRƯỜNG Th SỐ 2 GIA PHÚ"></div>
-        <div class="fg"><label class="lbl">Địa danh</label><input class="inp" id="diaDanh" value="Gia Phú"></div>
-        <div class="fg"><label class="lbl">Ký hiệu trường</label><input class="inp" id="kyhieu" value="TH2GP" placeholder="VD: TH2GP"></div>
-        <div class="fg full"><label class="lbl">Chức vụ người ký</label><input class="inp" id="chucVu" value="HIỆU TRƯỞNG"></div>
-        <div class="fg full"><label class="lbl">Họ tên người ký</label><input class="inp" id="nguoiKy" placeholder="VD: Nguyễn Văn An"></div>
+    <details id="thongTinDonViBox">
+      <summary class="ch" style="cursor:pointer;list-style:none">🏫 Thông tin đơn vị <span style="font-weight:400;font-size:11px;color:var(--g400)">(bấm để xem/sửa)</span></summary>
+      <div class="cb">
+        <div class="grid2">
+          <div class="fg full"><label class="lbl">Cơ quan cấp trên</label><input class="inp" id="coQuanTren" value="UBND XÃ GIA PHÚ"></div>
+          <div class="fg full"><label class="lbl">Tên trường / đơn vị</label><input class="inp" id="tenTruong" value="TRƯỜNG Th SỐ 2 GIA PHÚ"></div>
+          <div class="fg"><label class="lbl">Địa danh</label><input class="inp" id="diaDanh" value="Gia Phú"></div>
+          <div class="fg"><label class="lbl">Ký hiệu trường</label><input class="inp" id="kyhieu" value="TH2GP" placeholder="VD: TH2GP"></div>
+          <div class="fg full"><label class="lbl">Chức vụ người ký</label><input class="inp" id="chucVu" value="HIỆU TRƯỞNG"></div>
+          <div class="fg full"><label class="lbl">Họ tên người ký</label><input class="inp" id="nguoiKy" placeholder="VD: Nguyễn Văn An"></div>
+        </div>
+        <button onclick="saveInfo(); document.getElementById('thongTinDonViBox').removeAttribute('open')" class="btn btn-sec btn-sm" style="width:100%;justify-content:center;margin-top:4px">💾 Lưu thông tin</button>
       </div>
-      <button onclick="saveInfo()" class="btn btn-sec btn-sm" style="width:100%;justify-content:center;margin-top:4px">💾 Lưu thông tin</button>
-    </div>
+    </details>
   </div>
 
   <!-- ĐỊNH DẠNG -->
@@ -20550,8 +20552,8 @@ textarea.ta:focus{outline:none;border-color:var(--blue-mid);background:#fff}
     <div class="grid2">
       <div class="fg"><label class="lbl">Cỡ chữ Quốc hiệu (pt)</label><input class="inp" type="number" id="fmtSizeHeader" value="13" min="10" max="16" oninput="reapplyFormatting()"></div>
       <div class="fg"><label class="lbl">% rộng cột Quốc hiệu</label><input class="inp" type="number" id="fmtHeaderPct" value="65" min="50" max="80" oninput="reapplyFormatting()"></div>
-      <div class="fg"><label class="lbl">Lề trái cột trái (cm)</label><input class="inp" type="number" id="fmtHdrML" value="0" min="0" max="3" step="0.1" oninput="reapplyFormatting()"></div>
-      <div class="fg"><label class="lbl">Lề phải cột phải (cm)</label><input class="inp" type="number" id="fmtHdrMR" value="0" min="0" max="3" step="0.1" oninput="reapplyFormatting()"></div>
+      <div class="fg"><label class="lbl">Lề trái cột trái (cm)</label><input class="inp" type="number" id="fmtHdrML" value="2" min="0" max="3" step="0.1" oninput="reapplyFormatting()"></div>
+      <div class="fg"><label class="lbl">Lề phải cột phải (cm)</label><input class="inp" type="number" id="fmtHdrMR" value="1" min="0" max="3" step="0.1" oninput="reapplyFormatting()"></div>
       <div class="fg"><label class="lbl">Cỡ chữ tên trường (pt)</label><input class="inp" type="number" id="fmtSizeSchool" value="13" min="10" max="16" oninput="reapplyFormatting()"></div>
       <div class="fg"><label class="lbl">Cỡ chữ Tiêu ngữ (pt)</label><input class="inp" type="number" id="fmtSizeSlogan" value="13" min="10" max="16" oninput="reapplyFormatting()"></div>
     </div>
@@ -20971,8 +20973,8 @@ function switchFmtTab(tab, btn) {
 function resetHeaderFmt() {
   document.getElementById('fmtSizeHeader').value = 13;
   document.getElementById('fmtHeaderPct').value = 65;
-  document.getElementById('fmtHdrML').value = 0;
-  document.getElementById('fmtHdrMR').value = 0;
+  document.getElementById('fmtHdrML').value = 2;
+  document.getElementById('fmtHdrMR').value = 1;
   document.getElementById('fmtSizeSchool').value = 13;
   document.getElementById('fmtSizeSlogan').value = 13;
   // Chỉ áp lại phần Quốc hiệu, không đụng đến thông số Văn bản
